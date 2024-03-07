@@ -6,7 +6,11 @@ export default {
   ],
 
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        'mid': '0 0 50px 0 rgba(255, 255, 255, 0.5)',
+      }
+    },
   },
   plugins: [],
 }

@@ -13,7 +13,7 @@ const Canvas = ({ width, height }: CanvasProps) => {
     prepareCanvas,
     handleOnMouseDown,
     handleOnMouseUp,
-    handleOnMouseMove
+    handleOnMouseMove,
   } = useCanvas();
 
   useEffect(() => {

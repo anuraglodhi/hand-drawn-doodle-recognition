@@ -21,6 +21,8 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
   const prepareCanvas = () => {
     const ctx = canvasRef.current?.getContext("2d");
     if (!ctx) return;
+    ctx.imageSmoothingEnabled=true
+    ctx.imageSmoothingQuality='high'
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvasRef.current!.width, canvasRef.current!.height);
     ctx.lineCap = 'round';
@@ -33,7 +35,6 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
     const nativeEvent = e.nativeEvent as MouseEvent;
     const {offsetX, offsetY} = nativeEvent;
     contextRef.current?.beginPath();
-    console.log(offsetX, offsetY);
     contextRef.current?.moveTo(offsetX, offsetY);
     setInUse(true);
   };
