@@ -2,6 +2,7 @@ import './App.css'
 
 import Canvas from './components/Canvas.tsx'
 import { useCanvas } from './components/CanvasContext.tsx'
+import CategoriesList from './components/CategoriesList.tsx';
 
 function App() {
   const { canvasRef, clearCanvas } = useCanvas();
@@ -25,15 +26,10 @@ function App() {
         <div className='blue-splotch absolute top-[50%] left-[50%] h-[200px] w-[200px] dark:opacity-40 bg-blue-500 blur-3xl z-[-1]'/>
         <div className='green-splotch absolute top-[10%] right-[0%] h-[100px] w-[100px] dark:opacity-40 bg-green-300 blur-3xl z-[-1]'/>
 
-        <div className='prediction-container flex justify-center items-center w-full'>
-          {/* <button className='p-2 dark:bg-slate-50 size-fit bg-slate-950 text-gray-800 m-5'
-            onClick={() => {
-              const imageData = canvasRef.current?.toDataURL('image/png');
-              console.log(imageData);
-          }}
-          >
-            Data
-          </button> */}
+        <div className='prediction-container w-full h-full flex justify-end items-center'>
+          <div className='list-container h-[100vh] overflow-y-scroll'>
+            <CategoriesList />
+          </div>
         </div>
       </div>
     </>
