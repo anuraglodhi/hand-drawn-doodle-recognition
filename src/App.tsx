@@ -4,16 +4,17 @@ import Canvas from './components/Canvas.tsx'
 import { useCanvas } from './components/CanvasContext.tsx'
 import CategoriesList from './components/CategoriesList.tsx';
 import Predictor from './components/Predictor.tsx';
+import github from './assets/github.svg';
 
-function App() {
+const App = () => {
   const { clearCanvas } = useCanvas();
 
   return (
     <>
       <div className='app-container fixed top-0 left-0 flex flex-col h-dvh w-dvw dark:bg-zinc-800 bg-slate-50'>
-        <div className='nav p-2 w-full h-fit hover:shadow-xl rounded-b-lg'>
-        <div className='app-title text-3xl font-mono font-bold'>
-            Hand Drawn Doodle Recognition
+        <div className='nav py-2 px-10 w-full flex fex-row justify-center h-fit hover:shadow-xl rounded-b-lg'>
+          <div className='app-title text-3xl font-mono font-bold'>
+              Hand Drawn Doodle Recognition
           </div>
         </div>
         <div className='app-body flex'>

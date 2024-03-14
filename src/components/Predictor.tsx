@@ -15,7 +15,6 @@ const loadModel = async () => {
 
 const Predictor = () => {
   const [model, setModel] = useState<tf.LayersModel | null>(null);
-  const [imageData, setImageData] = useState<ImageData | null>(null);
   const[predictions, setPredictions]= useState<Float32Array | Int32Array | Uint8Array | undefined>(undefined);
 
   const categoryList = categories.split(' ')
@@ -30,7 +29,7 @@ const Predictor = () => {
     const ctx = canvasRef.current?.getContext("2d");
     if (!ctx) return;
     const imageData = ctx.getImageData(0, 0, canvasRef.current!.width, canvasRef.current!.height);
-    setImageData(imageData);
+    predict(imageData);
   }, 10000);
 
   const resizeImage = (imageData: ImageData) => {
@@ -51,13 +50,20 @@ const Predictor = () => {
     const preprocessedImage = preprocessImage(imageData);
     if (!model) return;
     const predictions = await model.predict(preprocessedImage) as tf.Tensor<tf.Rank>;
-    return predictions.dataSync();
+    setPredictions(predictions.dataSync());
   }
   
 
   return (
     <div className='predictions font-mono flex flex-col'>
       <table>
+        <tbody>
+          {predictions && Array.isArray(predictions) && predictions.map((prediction: number, key: number) => (
+            <tr key={key} className='p-2 m-2 flex items-start font-mono capitalize shadow-xl w-[120px]'>
+            <td>{categoryList[key] + ' ' + prediction.toFixed(2)}</td>
+          </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   )
