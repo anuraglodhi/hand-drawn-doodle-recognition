@@ -27,7 +27,7 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
     ctx.fillRect(0, 0, canvasRef.current!.width, canvasRef.current!.height);
     ctx.lineCap = 'round';
     ctx.strokeStyle = 'Black';
-    ctx.lineWidth = 4;
+    ctx.lineWidth = 20;
     contextRef.current = ctx;
   };
   

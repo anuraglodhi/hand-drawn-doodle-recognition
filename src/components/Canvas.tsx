@@ -5,7 +5,7 @@ import { useCanvas } from "./CanvasContext"
 interface CanvasProps {
   width: number
   height: number
-};
+}
 
 const Canvas = ({ width, height }: CanvasProps) => {
   const {
