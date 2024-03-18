@@ -73,13 +73,14 @@ const Predictor = () => {
   
 
   return (
-    <div className='predictions font-mono flex flex-col overflow-scroll'>
+    <div className='predictions font-mono flex flex-col'>
       <table>
         <tbody>
-          {Array.from(predictions).map((prediction: number[]) => (
-            <tr key={prediction[1]} className='p-2 m-2 flex items-start font-mono capitalize shadow-xl w-[120px]'>
-            <td>{categoryList[prediction[1]] + ' ' + prediction[0].toFixed(2)}</td>
-          </tr>
+          {Array.from(predictions).slice(0, 7).map((prediction: number[]) => (
+            <tr key={prediction[1]} className='p-2 m-2 flex justify-between items-start font-mono text-2xl capitalize shadow-xl'>
+              <td className='mr-20'>{categoryList[prediction[1]].split('_').join(' ')}</td>
+              <td>{(Number(prediction[0]) * 100).toFixed(2) + ' %'}</td>
+            </tr>
           ))}
         </tbody>
       </table>

@@ -25,7 +25,7 @@ const App = () => {
             <div className='canvas-continer dark:shadow-mid shadow-2xl'>
               <Canvas width={400} height={400} />
             </div>
-            <button className='m-5 shadow-inner hover:shadow-xl dark:text-zinc-50 text-gray-800 font-mono'
+            <button className='m-2 p-2 hover:shadow-xl dark:text-zinc-50 text-gray-800 font-mono rounded-sm'
               onClick={clearCanvas}
             >
               Clear Canvas
