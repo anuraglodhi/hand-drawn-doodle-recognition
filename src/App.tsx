@@ -4,7 +4,6 @@ import Canvas from './components/Canvas.tsx'
 import { useCanvas } from './components/CanvasContext.tsx'
 import CategoriesList from './components/CategoriesList.tsx';
 import Predictor from './components/Predictor.tsx';
-import github from './assets/github.svg';
 
 const App = () => {
   const { clearCanvas } = useCanvas();
