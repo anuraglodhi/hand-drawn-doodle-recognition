@@ -31,8 +31,8 @@ const App = () => {
             </button>
           </div>
 
-          <div className='blue-splotch absolute top-[50%] left-[50%] h-[200px] w-[200px] dark:opacity-40 bg-blue-500 blur-3xl z-[-1]'/>
-          <div className='green-splotch absolute top-[10%] right-[0%] h-[100px] w-[100px] dark:opacity-40 bg-green-300 blur-3xl z-[-1]'/>
+          <div className='blue-splotch absolute top-[50%] left-[50%] h-[200px] w-[200px] bg-blue-500/40 dark:bg-blue-500/40 blur-3xl z-[-1]'/>
+          <div className='green-splotch absolute top-[10%] right-[0%] h-[100px] w-[100px] bg-green-300/40 blur-3xl z-[-1]'/>
 
           <div className='prediction-container h-full w-full flex flex-col justify-start items-center'>
           <p className='m-2 p-2 text-2xl font-mono font-bold'>Predictions</p>
