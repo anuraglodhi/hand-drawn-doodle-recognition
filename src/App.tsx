@@ -11,15 +11,15 @@ const App = () => {
 
   return (
     <>
-      <div className='app-container fixed top-0 left-0 flex flex-col sm:h-dvh w-dvw dark:bg-zinc-800 bg-slate-50'>
+      <div className='app-container fixed top-0 left-0 flex flex-col scroll-m-0 sm:h-dvh w-dvw dark:bg-zinc-800 bg-slate-50'>
         <div className='nav py-2 px-10 w-full flex fex-row justify-center h-fit hover:shadow-xl rounded-b-lg'>
-          <div className='app-title text-xl font-extrabold sm:text-3xl font-mono sm:font-bold'>
+          <div className='app-title text-sm font-extrabold sm:text-3xl font-mono sm:font-bold'>
               Hand Drawn Doodle Recognition
           </div>
         </div>
         <div className='app-body flex flex-col sm:flex-row'>
           <div className='drawing-container flex flex-col w-full sm:w-[50%] justify-start items-center px-10'>
-            <div className='canvas-title p-2 m-2 text-xl sm:text-2xl font-mono font-bold'>
+            <div className='canvas-title p-2 m-2 text-xs sm:text-2xl font-mono font-bold'>
             Unleash your inner artist!
             </div>
             <div className='canvas-continer dark:shadow-mid shadow-2xl'>
@@ -39,7 +39,7 @@ const App = () => {
           <p className='m-2 p-2 text-2xl font-mono font-bold'>Predictions</p>
             <Predictor />
           </div>
-          <div className={`${size == 400 ? 'flex' : 'hidden'} list-container h-[80vh]`}>
+          <div className={`${size == 400 ? 'block' : 'hidden'} list-container h-[80vh]`}>
             <p className='list-title m-2 font-mono font-bold'>Our Categories</p>
             <div className='h-full overflow-y-scroll'>
               <CategoriesList />
