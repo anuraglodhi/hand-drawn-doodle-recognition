@@ -12,8 +12,11 @@ const Canvas = ({ width, height }: CanvasProps) => {
     canvasRef,
     prepareCanvas,
     handleOnMouseDown,
+    handleOnTouchStart,
     handleOnMouseUp,
+    handleOnTouchEnd,
     handleOnMouseMove,
+    handleOnTouchMove,
   } = useCanvas();
 
   useEffect(() => {
@@ -26,8 +29,12 @@ const Canvas = ({ width, height }: CanvasProps) => {
       width={width}
       height={height}
       onMouseDown={handleOnMouseDown}
+      onTouchStart={handleOnTouchStart}
       onMouseUp={handleOnMouseUp}
+      onTouchEnd={handleOnTouchEnd}
       onMouseMove={handleOnMouseMove}
+      onTouchMove={handleOnTouchMove}
+      className="hover:cursor-pen"
     />
   );
 }
