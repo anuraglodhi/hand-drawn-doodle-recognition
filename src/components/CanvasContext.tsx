@@ -5,8 +5,11 @@ interface CanvasContextType {
   contextRef: React.RefObject<CanvasRenderingContext2D>;
   prepareCanvas: () => void;
   handleOnMouseDown: (e: React.MouseEvent<HTMLCanvasElement>) => void;
+  handleOnTouchStart: (e: React.TouchEvent<HTMLCanvasElement>) => void;
   handleOnMouseUp: () => void;
+  handleOnTouchEnd: () => void;
   handleOnMouseMove: (e: React.MouseEvent<HTMLCanvasElement>) => void;
+  handleOnTouchMove: (e: React.TouchEvent<HTMLCanvasElement>) => void
   clearCanvas: () => void;
 };
 
@@ -39,7 +42,27 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
     setInUse(true);
   };
 
+  const handleOnTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    e.preventDefault();
+
+    const { touches } = e;
+    if (touches.length > 1) return;
+    const touch = touches[0];
+    const rect = canvasRef.current!.getBoundingClientRect();
+    const { clientX, clientY } = touch;
+    const offsetX = clientX - rect.left;
+    const offsetY = clientY - rect.top;
+    contextRef.current?.beginPath();
+    contextRef.current?.moveTo(offsetX, offsetY);
+    setInUse(true);
+  };
+
   const handleOnMouseUp = () => {
+    contextRef.current?.closePath();
+    setInUse(false);
+  };
+
+  const handleOnTouchEnd = () => {
     contextRef.current?.closePath();
     setInUse(false);
   };
@@ -51,6 +74,21 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
     const {offsetX, offsetY} = nativeEvent;
     contextRef.current?.lineTo(offsetX, offsetY);
     contextRef.current?.stroke()
+  };
+
+  const handleOnTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    if (!inUse) return;
+    e.preventDefault();
+
+    const { touches } = e;
+    if (touches.length > 1) return;
+    const touch = touches[0];
+    const rect = canvasRef.current!.getBoundingClientRect();
+    const { clientX, clientY } = touch;
+    const offsetX = clientX - rect.left;
+    const offsetY = clientY - rect.top;
+    contextRef.current?.lineTo(offsetX, offsetY);
+    contextRef.current?.stroke();
   };
 
   const clearCanvas = () => {
@@ -67,8 +105,11 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
         contextRef,
         prepareCanvas,
         handleOnMouseDown,
+        handleOnTouchStart,
         handleOnMouseUp,
+        handleOnTouchEnd,
         handleOnMouseMove,
+        handleOnTouchMove,
         clearCanvas,
       }}
     >
