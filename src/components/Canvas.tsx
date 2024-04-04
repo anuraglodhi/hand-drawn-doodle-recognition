@@ -1,10 +1,10 @@
-import { useEffect } from "react"
+import { useEffect } from "react";
 
-import { useCanvas } from "./CanvasContext"
+import { useCanvas } from "./CanvasContext";
 
 interface CanvasProps {
-  width: number
-  height: number
+  width: number;
+  height: number;
 }
 
 const Canvas = ({ width, height }: CanvasProps) => {
@@ -22,7 +22,7 @@ const Canvas = ({ width, height }: CanvasProps) => {
 
   useEffect(() => {
     prepareCanvas();
-  }, [])
+  }, []);
 
   return (
     <canvas
@@ -40,6 +40,6 @@ const Canvas = ({ width, height }: CanvasProps) => {
       className="hover:cursor-pen"
     />
   );
-}
+};
 
-export default Canvas
+export default Canvas;

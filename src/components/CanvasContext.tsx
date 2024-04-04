@@ -1,4 +1,4 @@
-import { useState, useRef, createContext, useContext } from "react"
+import { useState, useRef, createContext, useContext } from "react";
 
 interface CanvasContextType {
   canvasRef: React.RefObject<HTMLCanvasElement>;
@@ -10,35 +10,35 @@ interface CanvasContextType {
   handleOnMouseUp: () => void;
   handleOnTouchEnd: () => void;
   handleOnMouseMove: (e: React.MouseEvent<HTMLCanvasElement>) => void;
-  handleOnTouchMove: (e: React.TouchEvent<HTMLCanvasElement>) => void
+  handleOnTouchMove: (e: React.TouchEvent<HTMLCanvasElement>) => void;
   clearCanvas: () => void;
-};
+}
 
 const CanvasContext = createContext<CanvasContextType | null>(null);
 
 export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
-  
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const contextRef:React.MutableRefObject<CanvasRenderingContext2D | null> = useRef<CanvasRenderingContext2D | null>(null);
-  const [inUse, setInUse] = useState<Boolean>(false)
-  
+  const contextRef: React.MutableRefObject<CanvasRenderingContext2D | null> =
+    useRef<CanvasRenderingContext2D | null>(null);
+  const [inUse, setInUse] = useState<boolean>(false);
+
   const prepareCanvas = () => {
     const ctx = canvasRef.current?.getContext("2d");
     if (!ctx) return;
-    ctx.imageSmoothingEnabled=true
-    ctx.imageSmoothingQuality='high'
-    ctx.fillStyle = '#ffffff';
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
+    ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvasRef.current!.width, canvasRef.current!.height);
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-    ctx.strokeStyle = 'Black';
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = "Black";
     ctx.lineWidth = 20;
     contextRef.current = ctx;
   };
-  
+
   const handleOnMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const nativeEvent = e.nativeEvent as MouseEvent;
-    const {offsetX, offsetY} = nativeEvent;
+    const { offsetX, offsetY } = nativeEvent;
     contextRef.current?.moveTo(offsetX, offsetY);
     contextRef.current?.beginPath();
     setInUse(true);
@@ -48,7 +48,7 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
     if (e.buttons === 1) {
       handleOnMouseDown(e);
     }
-  }
+  };
 
   const handleOnTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
     // e.preventDefault();
@@ -74,14 +74,13 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
     contextRef.current?.closePath();
     setInUse(false);
   };
-  
+
   const handleOnMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (!inUse)
-      return 
+    if (!inUse) return;
     const nativeEvent = e.nativeEvent as MouseEvent;
-    const {offsetX, offsetY} = nativeEvent;
+    const { offsetX, offsetY } = nativeEvent;
     contextRef.current?.lineTo(offsetX, offsetY);
-    contextRef.current?.stroke()
+    contextRef.current?.stroke();
   };
 
   const handleOnTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
@@ -102,12 +101,12 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
   const clearCanvas = () => {
     const ctx = canvasRef.current?.getContext("2d");
     if (!ctx) return;
-    ctx.fillStyle = '#ffffff';
+    ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvasRef.current!.width, canvasRef.current!.height);
   };
 
   return (
-    <CanvasContext.Provider 
+    <CanvasContext.Provider
       value={{
         canvasRef,
         contextRef,
