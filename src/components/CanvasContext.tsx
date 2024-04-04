@@ -51,7 +51,7 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const handleOnTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
-    // e.preventDefault();
+    e.preventDefault();
 
     const { touches } = e;
     if (touches.length > 1) return;
@@ -85,7 +85,7 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
 
   const handleOnTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
     if (!inUse) return;
-    // e.preventDefault();
+    e.preventDefault();
 
     const { touches } = e;
     if (touches.length > 1) return;
