@@ -5,6 +5,7 @@ interface CanvasContextType {
   contextRef: React.RefObject<CanvasRenderingContext2D>;
   prepareCanvas: () => void;
   handleOnMouseDown: (e: React.MouseEvent<HTMLCanvasElement>) => void;
+  handleOnMouseEnter: (e: React.MouseEvent<HTMLCanvasElement>) => void;
   handleOnTouchStart: (e: React.TouchEvent<HTMLCanvasElement>) => void;
   handleOnMouseUp: () => void;
   handleOnTouchEnd: () => void;
@@ -37,10 +38,16 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
   const handleOnMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const nativeEvent = e.nativeEvent as MouseEvent;
     const {offsetX, offsetY} = nativeEvent;
-    contextRef.current?.beginPath();
     contextRef.current?.moveTo(offsetX, offsetY);
+    contextRef.current?.beginPath();
     setInUse(true);
   };
+
+  const handleOnMouseEnter = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    if (e.buttons === 1) {
+      handleOnMouseDown(e);
+    }
+  }
 
   const handleOnTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
     e.preventDefault();
@@ -105,6 +112,7 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
         contextRef,
         prepareCanvas,
         handleOnMouseDown,
+        handleOnMouseEnter,
         handleOnTouchStart,
         handleOnMouseUp,
         handleOnTouchEnd,

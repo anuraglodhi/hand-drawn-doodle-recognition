@@ -12,6 +12,7 @@ const Canvas = ({ width, height }: CanvasProps) => {
     canvasRef,
     prepareCanvas,
     handleOnMouseDown,
+    handleOnMouseEnter,
     handleOnTouchStart,
     handleOnMouseUp,
     handleOnTouchEnd,
@@ -34,6 +35,8 @@ const Canvas = ({ width, height }: CanvasProps) => {
       onTouchEnd={handleOnTouchEnd}
       onMouseMove={handleOnMouseMove}
       onTouchMove={handleOnTouchMove}
+      onMouseLeave={handleOnMouseUp}
+      onMouseEnter={handleOnMouseEnter}
       className="hover:cursor-pen"
     />
   );
