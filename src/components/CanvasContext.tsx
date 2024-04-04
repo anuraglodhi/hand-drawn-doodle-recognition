@@ -30,6 +30,7 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvasRef.current!.width, canvasRef.current!.height);
     ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
     ctx.strokeStyle = 'Black';
     ctx.lineWidth = 20;
     contextRef.current = ctx;
@@ -50,7 +51,7 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   const handleOnTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     const { touches } = e;
     if (touches.length > 1) return;
@@ -85,7 +86,7 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
 
   const handleOnTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
     if (!inUse) return;
-    e.preventDefault();
+    // e.preventDefault();
 
     const { touches } = e;
     if (touches.length > 1) return;
