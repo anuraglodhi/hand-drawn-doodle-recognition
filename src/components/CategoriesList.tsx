@@ -4,18 +4,16 @@ const CategoriesList = () => {
   const categoryList = categories.split(" ");
 
   return (
-    <table className="category-list">
-      <tbody>
-        {categoryList.map((category: string, key: number) => (
-          <tr
-            key={key}
-            className="p-2 m-2 flex justify-start font-mono capitalize shadow-xl w-[160px]"
-          >
-            <td>{category.split(/[_-]+/).join(" ")}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="category-list flex flex-wrap justify-center">
+      {categoryList.map((category: string, key: number) => (
+        <div
+          key={key}
+          className="p-2 m-2 flex justify-center font-mono capitalize shadow-xl w-[160px] aspect-square text-center items-center font-semibold text-lg"
+        >
+          <p>{category.split(/[_-]+/).join(" ")}</p>
+        </div>
+      ))}
+    </div>
   );
 };
 
