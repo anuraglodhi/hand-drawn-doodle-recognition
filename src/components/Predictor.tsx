@@ -19,7 +19,7 @@ const Predictor = () => {
 
   const categoryList = categories.split(" ");
 
-  const { canvasRef } = useCanvas();
+  const { contextRef } = useCanvas();
 
   useEffect(() => {
     loadModel().then((m) => setModel(m));
@@ -27,13 +27,13 @@ const Predictor = () => {
 
   useEffect(() => {
     const inter = setInterval(() => {
-      const ctx = canvasRef.current?.getContext("2d");
+      const ctx = contextRef.current;
       if (!ctx) return;
       const imageData = ctx.getImageData(
         0,
         0,
-        canvasRef.current!.width,
-        canvasRef.current!.height
+        ctx.canvas.width,
+        ctx.canvas.height
       );
       predict(imageData);
     }, 1000);
@@ -75,7 +75,7 @@ const Predictor = () => {
     };
 
     return () => clearInterval(inter);
-  }, [canvasRef, model]);
+  }, [contextRef, model]);
 
   return (
     <div className="predictions font-mono flex flex-col">
