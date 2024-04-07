@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
+  // darkMode: ["class"],
+  darkMode: 'media',
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
@@ -56,6 +57,13 @@ module.exports = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        'mid-2xl': '0 0 50px 0 rgba(255, 255, 255, 0.5)',
+        'mid-lg': '0 0 10px 5px rgba(255, 255, 255, 0.125)',
+      },
+      cursor: {
+        pen: "url('/pencil.svg'), default",
       },
       keyframes: {
         "accordion-down": {
