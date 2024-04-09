@@ -8,7 +8,7 @@ const CategoriesList = () => {
       {categoryList.map((category: string, key: number) => (
         <div
           key={key}
-          className="p-2 m-2 flex justify-center font-mono capitalize shadow-xl w-[160px] aspect-square text-center items-center font-semibold text-lg"
+          className="p-2 m-2 flex justify-center font-mono capitalize shadow-xl w-[160px] aspect-square bg-white/10 text-center items-center font-semibold text-lg"
         >
           <p>{category.split(/[_-]+/).join(" ")}</p>
         </div>

@@ -12,7 +12,6 @@ const Canvas = ({ width, height }: CanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [inUse, setInUse] = useState<boolean>(false);
 
-
   const handleOnMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const nativeEvent = e.nativeEvent as MouseEvent;
     const { offsetX, offsetY } = nativeEvent;
@@ -105,7 +104,7 @@ const Canvas = ({ width, height }: CanvasProps) => {
       onTouchMove={handleOnTouchMove}
       onMouseLeave={handleOnMouseUp}
       onMouseEnter={handleOnMouseEnter}
-      className="hover:cursor-pen"
+      className="cursor-pen"
     />
   );
 };

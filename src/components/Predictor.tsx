@@ -78,7 +78,7 @@ const Predictor = () => {
   }, [contextRef, model]);
 
   return (
-    <div className="predictions font-mono flex flex-col">
+    <div className="predictions font-mono">
       <table>
         <tbody>
           {Array.from(predictions)
@@ -86,9 +86,9 @@ const Predictor = () => {
             .map((prediction: number[]) => (
               <tr
                 key={prediction[1]}
-                className="p-2 m-2 flex justify-between items-start font-mono text-2xl capitalize shadow-xl"
+                className="p-2 m-2 flex justify-between items-start font-mono sm:text-2xl text-xs capitalize shadow-xl"
               >
-                <td className="mr-20">
+                <td className="sm:mr-20 mr-10">
                   {categoryList[prediction[1]].split(/[_-]+/).join(" ")}
                 </td>
                 <td>{(Number(prediction[0]) * 100).toFixed(2) + " %"}</td>

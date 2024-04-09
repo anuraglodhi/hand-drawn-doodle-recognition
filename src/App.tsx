@@ -21,7 +21,7 @@ const App = () => {
   return (
     <>
       <div className="flex flex-col items-center dark:text-zinc-50 text-gray-800">
-        <div className="app-container fixed top-0 left-0 flex flex-col scroll-m-0 sm:h-dvh w-dvw dark:bg-zinc-800 bg-slate-50">
+        <div className="app-container fixed top-0 left-0 flex flex-col scroll-m-0 h-[100%] w-[100%] dark:bg-zinc-800 bg-slate-50">
           <div className="nav py-2 px-10 w-full flex fex-row justify-center h-fit shadow-lg rounded-b-lg">
             <div className="app-title text-sm font-extrabold sm:text-3xl font-mono sm:font-bold">
               Hand Drawn Doodle Recognition
@@ -36,7 +36,7 @@ const App = () => {
                 <Canvas width={size} height={size} />
               </div>
               <button
-                className="m-2 p-2 shadow-2xl bg-gray-500/10 dark:bg-white/10 font-mono rounded-sm"
+                className="m-2 p-2 shadow-2xl sm:text-base text-sm bg-gray-500/10 dark:bg-white/10 font-mono rounded-sm"
                 onClick={clearCanvas}
               >
                 Clear Canvas
@@ -47,24 +47,26 @@ const App = () => {
             <div className="green-splotch absolute top-[10%] right-[0%] h-[100px] w-[100px] bg-green-300/80 blur-3xl z-[-1]" />
 
             <div className="prediction-container h-full w-full flex flex-col justify-start items-center">
-              <p className="m-2 p-2 text-2xl font-mono font-bold">
+              <p className="m-2 p-2 sm:text-2xl text-xs font-mono font-bold">
                 Predictions
               </p>
-              <Predictor />
+              <div className="">
+                <Predictor />
+              </div>
             </div>
           </div>
         </div>
 
         <Sheet>
-          <SheetTrigger className="fixed bottom-1 flex flex-col items-center font-bold animate-bounce right-1 sm:right-auto">
-            <ArrowUpFromLine className="h-6 w-6" />
+          <SheetTrigger className="fixed bottom-1 flex flex-col items-center font-bold sm:text-base text-xs sm:animate-[bounce_5s_ease-in-out_infinite] right-1 sm:right-auto">
+            <ArrowUpFromLine className="h-6 w-6 sm:block hidden" />
             All
             <br />
             categories
           </SheetTrigger>
           <SheetContent
-            side="bottom"
-            className="max-h-[calc(100vh-100px)] flex flex-col p-0"
+            side={window.innerWidth >= 640 ? "bottom" : "right"}
+            className="sm:max-h-[calc(100vh-100px)] h-[100vh] sm:w-[100vw] w-[90%] flex flex-col p-0 bg-white/40 dark:bg-white/10"
           >
             <SheetHeader className="flex items-center mt-3">
               <SheetTitle className="font-extrabold sm:text-3xl sm:font-bold">
