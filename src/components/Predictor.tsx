@@ -86,7 +86,7 @@ const Predictor = () => {
             .map((prediction: number[]) => (
               <tr
                 key={prediction[1]}
-                className="p-2 m-2 flex justify-between items-start font-mono sm:text-2xl text-xs capitalize shadow-xl"
+                className="p-2 m-2 flex justify-between items-start font-mono text-2xl capitalize shadow-xl"
               >
                 <td className="sm:mr-20 mr-10">
                   {categoryList[prediction[1]].split(/[_-]+/).join(" ")}

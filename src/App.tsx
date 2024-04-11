@@ -43,8 +43,8 @@ const App = () => {
               </button>
             </div>
 
-            <div className="blue-splotch absolute top-[50%] left-[50%] h-[200px] w-[200px] bg-blue-500/40 blur-3xl z-[-1]" />
-            <div className="green-splotch absolute top-[10%] right-[0%] h-[100px] w-[100px] bg-green-300/80 blur-3xl z-[-1]" />
+            <div className="blue-splotch absolute sm:top-[50%] top-[80%] sm:left-[50%] left-[0%] sm:h-[200px] h-[100px] aspect-square bg-blue-500/40 blur-3xl z-[-1]" />
+            <div className="green-splotch absolute top-[10%] sm:right-[0%] right-[10%] sm:h-[100px] h-[100px] aspect-square bg-green-300/80 blur-3xl z-[-1]" />
 
             <div className="prediction-container h-full w-full flex flex-col justify-start items-center">
               <p className="m-2 p-2 sm:text-2xl text-xs font-mono font-bold">
@@ -66,7 +66,7 @@ const App = () => {
           </SheetTrigger>
           <SheetContent
             side={window.innerWidth >= 640 ? "bottom" : "right"}
-            className="sm:max-h-[calc(100vh-100px)] h-[100vh] sm:w-[100vw] w-[90%] flex flex-col p-0 bg-white/40 dark:bg-white/10"
+            className="sm:max-h-[calc(100vh-100px)] h-[100vh] sm:w-[100vw] w-[90%] flex flex-col p-0 dark:bg-zinc-800 bg-white"
           >
             <SheetHeader className="flex items-center mt-3">
               <SheetTitle className="font-extrabold sm:text-3xl sm:font-bold">
