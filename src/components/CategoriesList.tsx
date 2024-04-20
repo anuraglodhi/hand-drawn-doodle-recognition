@@ -8,13 +8,13 @@ const CategoriesList = () => {
       {categoryList.map((category: string, key: number) => (
         <div
           key={key}
-          className="p-2 m-2 flex flex-col justify-center font-mono capitalize shadow-xl sm:w-[180px] w-[120px] aspect-square text-center items-center font-semibold sm:text-lg text-sm"
+          className="p-2 m-2 flex flex-col sm:justify-center justify-start font-mono capitalize shadow-xl sm:w-[180px] w-[120px] aspect-square text-center items-center font-semibold sm:text-lg text-sm"
         >
           <img
             src={`../../examples/${category}.png`}
             width={100}
             height={100}
-            className="m-2"
+            className="m-2 dark:invert dark:mix-blend-color-dodge dark:contrast-200" // quite laggy
           />
           <p>{category.split(/[_-]+/).join(" ")}</p>
         </div>
