@@ -1,5 +1,8 @@
 import * as tf from "@tensorflow/tfjs";
+
 import { useEffect, useState } from "react";
+import { Reorder } from "framer-motion";
+
 import { useCanvas } from "./CanvasContext";
 import categories from "../assets/categories";
 
@@ -20,6 +23,16 @@ const Predictor = () => {
   const categoryList = categories.split(" ");
 
   const { contextRef } = useCanvas();
+
+  const isBlank = () => {
+    const ctx = contextRef.current;
+    if (!ctx) return;
+    const pixelData = new Uint32Array(
+      ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height).data
+    );
+
+    return !pixelData.some((color) => color !== 255);
+  };
 
   useEffect(() => {
     loadModel().then((m) => setModel(m));
@@ -78,25 +91,31 @@ const Predictor = () => {
   }, [contextRef, model]);
 
   return (
-    <div className="predictions font-mono">
-      <table>
-        <tbody>
-          {Array.from(predictions)
+    <Reorder.Group values={predictions} onReorder={setPredictions} as="table">
+      <tbody>
+        {isBlank() ? (
+          <tr className="flex text-2xl mt-[75%]">
+            <td>Draw Something!</td>
+          </tr>
+        ) : (
+          Array.from(predictions)
             .slice(0, 7)
             .map((prediction: number[]) => (
-              <tr
+              <Reorder.Item
                 key={prediction[1]}
-                className="p-2 m-2 flex justify-between items-start font-mono text-2xl capitalize shadow-xl"
+                value={prediction[1]}
+                className="p-2 m-2 sm:min-w-[350px] flex justify-between items-start font-mono text-2xl capitalize shadow-xl"
+                as="tr"
               >
                 <td className="sm:mr-20 mr-10">
                   {categoryList[prediction[1]].split(/[_-]+/).join(" ")}
                 </td>
                 <td>{(Number(prediction[0]) * 100).toFixed(2) + " %"}</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-    </div>
+              </Reorder.Item>
+            ))
+        )}
+      </tbody>
+    </Reorder.Group>
   );
 };
 

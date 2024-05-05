@@ -50,9 +50,7 @@ const App = () => {
               <p className="m-2 p-2 sm:text-2xl text-xs font-mono font-bold">
                 Predictions
               </p>
-              <div className="">
-                <Predictor />
-              </div>
+              <Predictor />
             </div>
           </div>
         </div>
