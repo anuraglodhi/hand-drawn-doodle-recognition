@@ -43,8 +43,9 @@ const App = () => {
               </button>
             </div>
 
-            <div className="blue-splotch absolute sm:top-[50%] top-[80%] sm:left-[50%] left-[0%] sm:h-[200px] h-[100px] aspect-square bg-blue-500/40 blur-3xl z-[-1]" />
-            <div className="green-splotch absolute top-[10%] sm:right-[0%] right-[10%] sm:h-[100px] h-[100px] aspect-square bg-green-300/80 blur-3xl z-[-1]" />
+            <div className="blue-splotch absolute sm:top-[50%] top-[80%] sm:left-[50%] left-[60%] sm:h-[200px] h-[120px] aspect-square bg-blue-500/40 blur-3xl z-[-1]" />
+            <div className="green-splotch absolute top-[10%] sm:right-[0%] right-[10%] h-[100px] aspect-square bg-green-300/80 blur-3xl z-[-1]" />
+            <div className="yellow-splotch absolute sm:top-[15%] top-[50%] sm:left-[5%] left-[10%] sm:h-[200px] h-[100px] aspect-square bg-yellow-200/40 blur-3xl z-[-1]" />
 
             <div className="prediction-container h-full w-full flex flex-col justify-start items-center">
               <p className="m-2 p-2 sm:text-2xl text-xs font-mono font-bold">

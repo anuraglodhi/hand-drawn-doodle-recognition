@@ -94,7 +94,7 @@ const Predictor = () => {
     <Reorder.Group values={predictions} onReorder={setPredictions} as="table">
       <tbody>
         {isBlank() ? (
-          <tr className="flex text-2xl mt-[75%]">
+          <tr className="flex sm:text-2xl text-md mt-[75%]">
             <td>Draw Something!</td>
           </tr>
         ) : (
@@ -104,7 +104,11 @@ const Predictor = () => {
               <Reorder.Item
                 key={prediction[1]}
                 value={prediction[1]}
-                className="p-2 m-2 sm:min-w-[350px] flex justify-between items-start font-mono text-2xl capitalize shadow-xl"
+                className={`p-2 m-2 sm:min-w-[350px] flex justify-between items-start font-mono text-2xl capitalize shadow-xl ${
+                  prediction == predictions[0]
+                    ? "dark:bg-white/5 bg-green-600/5 font-bold"
+                    : "bg-none"
+                }`}
                 as="tr"
               >
                 <td className="sm:mr-20 mr-10">
