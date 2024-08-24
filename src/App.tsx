@@ -13,7 +13,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "./components/ui/sheet.tsx";
-import { ArrowUpFromLine } from "lucide-react";
+import { ArrowUpFromLine, Redo, Undo } from "lucide-react";
 
 const App = () => {
   const { clearCanvas, draw, erase, undo, redo } = useCanvas();
@@ -45,7 +45,7 @@ const App = () => {
     <>
       <div className="flex flex-col items-center dark:text-zinc-50 text-gray-800">
         <div className="app-container fixed top-0 left-0 flex flex-col scroll-m-0 h-[100%] w-[100%] dark:bg-zinc-800 bg-slate-50">
-          <div className="nav py-2 mx-4 w-full flex fex-row justify-start sm:justify-center h-fit shadow-lg rounded-b-lg">
+          <div className="nav py-2 px-4 w-full flex fex-row justify-start sm:justify-center h-fit shadow-lg rounded-b-lg">
             <span className="app-title inline-block text-sm font-extrabold sm:text-3xl font-mono sm:font-bold">
               Hand Drawn Doodle Recognition
             </span>
@@ -54,7 +54,7 @@ const App = () => {
           <div className="app-body flex flex-col sm:flex-row">
             <div className="drawing-container flex flex-col w-full sm:w-[50%] justify-start items-center px-10">
               <div className="canvas-title p-2 m-2 text-xs sm:text-2xl font-mono font-bold">
-                Unleash your inner artist!
+                Draw Here!
               </div>
               <div className="canvas-continer dark:shadow-mid-2xl shadow-2xl">
                 <Canvas width={size} height={size} />
@@ -77,6 +77,18 @@ const App = () => {
                   onClick={clearCanvas}
                 >
                   Clear
+                </button>
+                <button
+                  className="w-fit m-2 p-2 shadow-2xl sm:text-base text-sm bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/10 active:dark:bg-white/20 font-mono rounded-sm"
+                  onClick={undo}
+                >
+                  <Undo />
+                </button>
+                <button
+                  className="w-fit m-2 p-2 shadow-2xl sm:text-base text-sm bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/10 active:dark:bg-white/20 font-mono rounded-sm"
+                  onClick={redo}
+                >
+                  <Redo />
                 </button>
               </div>
             </div>

@@ -94,6 +94,11 @@ const Canvas = ({ width, height }: CanvasProps) => {
     ctx.strokeStyle = "#000000";
     ctx.lineWidth = 20;
     contextRef.current = ctx;
+  }, [contextRef]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
     canvas.addEventListener("touchstart", handleOnTouchStart, {
       passive: false,
@@ -102,12 +107,11 @@ const Canvas = ({ width, height }: CanvasProps) => {
     canvas.addEventListener("touchend", handleOnTouchEnd, { passive: false });
 
     return () => {
-      // Clean up the event listeners
       canvas.removeEventListener("touchstart", handleOnTouchStart);
       canvas.removeEventListener("touchmove", handleOnTouchMove);
       canvas.removeEventListener("touchend", handleOnTouchEnd);
     };
-  }, []);
+  }, [inUse]);
 
   return (
     <canvas
