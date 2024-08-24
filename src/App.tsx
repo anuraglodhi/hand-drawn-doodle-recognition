@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 
 import Canvas from "./components/Canvas.tsx";
@@ -15,8 +16,30 @@ import {
 import { ArrowUpFromLine } from "lucide-react";
 
 const App = () => {
-  const { clearCanvas } = useCanvas();
+  const { clearCanvas, draw, erase, undo, redo } = useCanvas();
   const size = window.innerWidth > 400 ? 400 : window.innerWidth * 0.9;
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey) {
+        switch (e.key) {
+          case "z":
+            e.preventDefault();
+            undo();
+            break;
+          case "y":
+            e.preventDefault();
+            redo();
+            break;
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [undo, redo]);
 
   return (
     <>
@@ -35,12 +58,26 @@ const App = () => {
               <div className="canvas-continer dark:shadow-mid-2xl shadow-2xl">
                 <Canvas width={size} height={size} />
               </div>
-              <button
-                className="m-2 p-2 shadow-2xl sm:text-base text-sm bg-gray-500/10 dark:bg-white/10 font-mono rounded-sm"
-                onClick={clearCanvas}
-              >
-                Clear Canvas
-              </button>
+              <div className="tool-bar flex flex-row">
+                <button
+                  className="w-[60px] m-2 p-2 shadow-2xl sm:text-base text-sm bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/10 active:dark:bg-white/20 font-mono rounded-sm"
+                  onClick={draw}
+                >
+                  Draw
+                </button>
+                <button
+                  className="w-[60px] m-2 p-2 shadow-2xl sm:text-base text-sm bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/10 active:dark:bg-white/20 font-mono rounded-sm"
+                  onClick={erase}
+                >
+                  Erase
+                </button>
+                <button
+                  className="w-[60px] m-2 p-2 shadow-2xl sm:text-base text-sm bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/10 active:dark:bg-white/20 font-mono rounded-sm"
+                  onClick={clearCanvas}
+                >
+                  Clear
+                </button>
+              </div>
             </div>
 
             <div className="blue-splotch absolute sm:top-[50%] top-[80%] sm:left-[50%] left-[60%] sm:h-[200px] h-[120px] aspect-square bg-blue-500/40 blur-3xl z-[-1]" />

@@ -63,8 +63,8 @@ module.exports = {
         'mid-lg': '0 0 10px 5px rgba(255, 255, 255, 0.125)',
       },
       cursor: {
-        pen: "url('/pencil.svg'), default",
-        eraser: "url('/eraser.svg'), default",
+        pen: "url('/pencil.svg') 0 15, default",
+        eraser: "url('/circle.svg') 10 10, default",
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",

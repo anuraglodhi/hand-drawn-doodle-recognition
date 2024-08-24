@@ -7,7 +7,7 @@ interface CanvasProps {
 }
 
 const Canvas = ({ width, height }: CanvasProps) => {
-  const { contextRef } = useCanvas();
+  const { contextRef, saveState } = useCanvas();
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [inUse, setInUse] = useState<boolean>(false);
@@ -18,6 +18,7 @@ const Canvas = ({ width, height }: CanvasProps) => {
     contextRef.current?.moveTo(offsetX, offsetY);
     contextRef.current?.beginPath();
     setInUse(true);
+    saveState();
   };
 
   const handleOnMouseEnter = (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -27,8 +28,6 @@ const Canvas = ({ width, height }: CanvasProps) => {
   };
 
   const handleOnTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
-    e.preventDefault();
-
     const { touches } = e;
     if (touches.length > 1) return;
     const touch = touches[0];
@@ -39,6 +38,7 @@ const Canvas = ({ width, height }: CanvasProps) => {
     contextRef.current?.beginPath();
     contextRef.current?.moveTo(offsetX, offsetY);
     setInUse(true);
+    saveState();
   };
 
   const handleOnMouseUp = () => {
@@ -61,7 +61,6 @@ const Canvas = ({ width, height }: CanvasProps) => {
 
   const handleOnTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
     if (!inUse) return;
-    e.preventDefault();
 
     const { touches } = e;
     if (touches.length > 1) return;
@@ -86,13 +85,15 @@ const Canvas = ({ width, height }: CanvasProps) => {
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
-    ctx.strokeStyle = "Black";
+    ctx.strokeStyle = "#000000";
     ctx.lineWidth = 20;
     contextRef.current = ctx;
-  }, [contextRef]);
+  }, []);
 
   return (
     <canvas
+      aria-label="Drawing Canvas"
+      role="img"
       ref={canvasRef}
       width={width}
       height={height}
