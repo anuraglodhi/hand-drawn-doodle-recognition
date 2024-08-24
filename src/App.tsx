@@ -46,7 +46,7 @@ const App = () => {
       <div className="flex flex-col items-center dark:text-zinc-50 text-gray-800">
         <div className="app-container fixed top-0 left-0 flex flex-col scroll-m-0 h-[100%] w-[100%] dark:bg-zinc-800 bg-slate-50">
           <div className="nav py-2 px-4 w-full flex fex-row justify-start sm:justify-center h-fit shadow-lg rounded-b-lg">
-            <span className="app-title inline-block text-sm font-extrabold sm:text-3xl font-mono sm:font-bold">
+            <span className="app-title inline-block text-sm sm:text-3xl font-mono font-bold">
               Hand Drawn Doodle Recognition
             </span>
             <button></button>
@@ -61,31 +61,31 @@ const App = () => {
               </div>
               <div className="tool-bar flex flex-row">
                 <button
-                  className="w-[60px] m-2 p-2 shadow-2xl sm:text-base text-sm bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/10 active:dark:bg-white/20 font-mono rounded-sm"
+                  className="w-[60px] m-2 p-2 shadow-2xl sm:text-base text-sm bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/20 active:dark:bg-white/20 font-mono font-bold rounded-sm"
                   onClick={draw}
                 >
                   Draw
                 </button>
                 <button
-                  className="w-[60px] m-2 p-2 shadow-2xl sm:text-base text-sm bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/10 active:dark:bg-white/20 font-mono rounded-sm"
+                  className="w-[60px] m-2 p-2 shadow-2xl sm:text-base text-sm  bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/20 active:dark:bg-white/20 font-mono font-bold rounded-sm"
                   onClick={erase}
                 >
                   Erase
                 </button>
                 <button
-                  className="w-[60px] m-2 p-2 shadow-2xl sm:text-base text-sm bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/10 active:dark:bg-white/20 font-mono rounded-sm"
+                  className="w-[60px] m-2 p-2 shadow-2xl sm:text-base text-sm bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/20 active:dark:bg-white/20 font-mono font-bold rounded-sm"
                   onClick={clearCanvas}
                 >
                   Clear
                 </button>
                 <button
-                  className="w-fit m-2 p-2 shadow-2xl sm:text-base text-sm bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/10 active:dark:bg-white/20 font-mono rounded-sm"
+                  className="w-fit m-2 p-2 shadow-2xl bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/10 active:dark:bg-white/20 rounded-sm"
                   onClick={undo}
                 >
                   <Undo />
                 </button>
                 <button
-                  className="w-fit m-2 p-2 shadow-2xl sm:text-base text-sm bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/10 active:dark:bg-white/20 font-mono rounded-sm"
+                  className="w-fit m-2 p-2 shadow-2xl bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/10 active:dark:bg-white/20 rounded-sm"
                   onClick={redo}
                 >
                   <Redo />
@@ -98,7 +98,7 @@ const App = () => {
             <div className="yellow-splotch absolute sm:top-[15%] top-[50%] sm:left-[5%] left-[10%] sm:h-[200px] h-[100px] aspect-square bg-yellow-200/40 blur-3xl z-[-1]" />
 
             <div className="prediction-container h-full w-full flex flex-col justify-start items-center">
-              <p className="m-2 p-2 sm:text-2xl text-xs font-mono font-bold">
+              <p className="m-2 p-2 sm:text-2xl text-sm font-mono font-bold">
                 Predictions
               </p>
               <Predictor />

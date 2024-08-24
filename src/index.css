@@ -84,6 +84,12 @@ button:focus-visible {
   border-radius: 2px;
 }
 
+@media (max-width: 640px) {
+  .font-bold {
+    font-weight: 700 !important;
+  }
+}
+
 @layer base {
   * {
     @apply border-border font-mono;
