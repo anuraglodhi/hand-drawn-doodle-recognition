@@ -104,7 +104,8 @@ const Predictor = () => {
               <Reorder.Item
                 key={prediction[1]}
                 value={prediction[1]}
-                className={`p-2 m-2 min-w-[calc(100vw*0.9)] sm:min-w-[350px] flex justify-between items-start font-mono text-sm sm:text-2xl capitalize shadow-xl ${
+                dragListener={false}
+                className={`p-2 m-2 min-w-[calc(100vw*0.9)] sm:min-w-[350px] flex justify-between items-start font-mono text-lg sm:text-2xl capitalize shadow-xl ${
                   prediction == predictions[0]
                     ? "dark:bg-white/5 bg-green-600/5 font-bold"
                     : "bg-none"

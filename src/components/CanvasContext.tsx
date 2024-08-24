@@ -23,6 +23,8 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
     ctx.fillStyle = "#ffffff";
     ctx.strokeStyle = "Black";
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    undoStack.current = [];
+    redoStack.current = [];
   };
 
   const draw = () => {

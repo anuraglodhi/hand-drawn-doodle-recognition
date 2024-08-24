@@ -45,15 +45,15 @@ const App = () => {
     <>
       <div className="flex flex-col items-center dark:text-zinc-50 text-gray-800">
         <div className="app-container fixed top-0 left-0 flex flex-col scroll-m-0 h-[100%] w-[100%] dark:bg-zinc-800 bg-slate-50">
-          <div className="nav py-2 px-4 w-full flex fex-row justify-start sm:justify-center h-fit shadow-lg rounded-b-lg">
-            <span className="app-title inline-block text-sm sm:text-3xl font-mono font-bold">
+          <div className="nav py-2 px-4 min-h-14 w-full flex fex-row justify-start sm:justify-center items-center shadow-lg rounded-b-lg">
+            <span className="app-title inline-block text-lg sm:text-3xl font-mono font-bold">
               Hand Drawn Doodle Recognition
             </span>
             <button></button>
           </div>
           <div className="app-body flex flex-col sm:flex-row">
             <div className="drawing-container flex flex-col w-full sm:w-[50%] justify-start items-center px-10">
-              <div className="canvas-title p-2 m-2 text-xs sm:text-2xl font-mono font-bold">
+              <div className="canvas-title p-2 m-2 text-lg sm:text-2xl font-mono font-bold">
                 Draw Here!
               </div>
               <div className="canvas-continer dark:shadow-mid-2xl shadow-2xl">
@@ -61,31 +61,31 @@ const App = () => {
               </div>
               <div className="tool-bar flex flex-row">
                 <button
-                  className="w-[60px] m-2 p-2 shadow-2xl sm:text-base text-sm bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/20 active:dark:bg-white/20 font-mono font-bold rounded-sm"
+                  className="w-[60px] m-2 p-2 shadow-2xl sm:text-base text-sm bg-white/20 dark:bg-white/10 active:bg-white/40 active:dark:bg-white/20 font-mono font-bold rounded-sm"
                   onClick={draw}
                 >
                   Draw
                 </button>
                 <button
-                  className="w-[60px] m-2 p-2 shadow-2xl sm:text-base text-sm  bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/20 active:dark:bg-white/20 font-mono font-bold rounded-sm"
+                  className="w-[60px] m-2 p-2 shadow-2xl sm:text-base text-sm  bg-white/20 dark:bg-white/10 active:bg-white/40 active:dark:bg-white/20 font-mono font-bold rounded-sm"
                   onClick={erase}
                 >
                   Erase
                 </button>
                 <button
-                  className="w-[60px] m-2 p-2 shadow-2xl sm:text-base text-sm bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/20 active:dark:bg-white/20 font-mono font-bold rounded-sm"
+                  className="w-[60px] m-2 p-2 shadow-2xl sm:text-base text-sm bg-white/20 dark:bg-white/10 active:bg-white/40 active:dark:bg-white/20 font-mono font-bold rounded-sm"
                   onClick={clearCanvas}
                 >
                   Clear
                 </button>
                 <button
-                  className="w-fit m-2 p-2 shadow-2xl bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/10 active:dark:bg-white/20 rounded-sm"
+                  className="w-fit m-2 p-2 shadow-2xl bg-white/20 dark:bg-white/10 active:bg-white/40 active:dark:bg-white/20 rounded-sm"
                   onClick={undo}
                 >
                   <Undo />
                 </button>
                 <button
-                  className="w-fit m-2 p-2 shadow-2xl bg-gray-500/10 dark:bg-white/10 active:bg-gray-500/10 active:dark:bg-white/20 rounded-sm"
+                  className="w-fit m-2 p-2 shadow-2xl bg-white/20 dark:bg-white/10 active:bg-white/40 active:dark:bg-white/20 rounded-sm"
                   onClick={redo}
                 >
                   <Redo />
@@ -113,11 +113,11 @@ const App = () => {
             <br />
             categories
           </SheetTrigger>
-          <SheetTrigger className="fixed flex sm:hidden top-[10px] right-4">
+          <SheetTrigger className="fixed flex sm:hidden top-[12px] right-4">
             <img
               src="/hamburger.svg"
-              width={16}
-              height={16}
+              width={32}
+              height={32}
               className="dark:invert"
             />
           </SheetTrigger>
