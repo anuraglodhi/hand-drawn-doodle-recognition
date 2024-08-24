@@ -12,6 +12,12 @@ const Canvas = ({ width, height }: CanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [inUse, setInUse] = useState<boolean>(false);
 
+  const handleOnMouseEnter = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    if (e.buttons === 1) {
+      handleOnMouseDown(e);
+    }
+  };
+
   const handleOnMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const nativeEvent = e.nativeEvent as MouseEvent;
     const { offsetX, offsetY } = nativeEvent;
@@ -19,36 +25,6 @@ const Canvas = ({ width, height }: CanvasProps) => {
     contextRef.current?.beginPath();
     setInUse(true);
     saveState();
-  };
-
-  const handleOnMouseEnter = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (e.buttons === 1) {
-      handleOnMouseDown(e);
-    }
-  };
-
-  const handleOnTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
-    const { touches } = e;
-    if (touches.length > 1) return;
-    const touch = touches[0];
-    const rect = contextRef.current!.canvas.getBoundingClientRect();
-    const { clientX, clientY } = touch;
-    const offsetX = clientX - rect.left;
-    const offsetY = clientY - rect.top;
-    contextRef.current?.beginPath();
-    contextRef.current?.moveTo(offsetX, offsetY);
-    setInUse(true);
-    saveState();
-  };
-
-  const handleOnMouseUp = () => {
-    contextRef.current?.closePath();
-    setInUse(false);
-  };
-
-  const handleOnTouchEnd = () => {
-    contextRef.current?.closePath();
-    setInUse(false);
   };
 
   const handleOnMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -59,7 +35,30 @@ const Canvas = ({ width, height }: CanvasProps) => {
     contextRef.current?.stroke();
   };
 
-  const handleOnTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
+  const handleOnMouseUp = () => {
+    contextRef.current?.closePath();
+    setInUse(false);
+  };
+
+  const handleOnTouchStart = (e: TouchEvent) => {
+    e.preventDefault();
+
+    const { touches } = e;
+    if (touches.length > 1) return;
+    const touch = touches[0];
+    const rect = contextRef.current!.canvas.getBoundingClientRect();
+    const { clientX, clientY } = touch;
+    const offsetX = clientX - rect.left;
+    const offsetY = clientY - rect.top;
+    contextRef.current?.beginPath();
+    contextRef.current?.moveTo(offsetX, offsetY);
+    setInUse(true);
+    saveState();
+  };
+
+  const handleOnTouchMove = (e: TouchEvent) => {
+    e.preventDefault();
+
     if (!inUse) return;
 
     const { touches } = e;
@@ -73,10 +72,17 @@ const Canvas = ({ width, height }: CanvasProps) => {
     contextRef.current?.stroke();
   };
 
+  const handleOnTouchEnd = (e: TouchEvent) => {
+    e.preventDefault();
+    contextRef.current?.closePath();
+    setInUse(false);
+  };
+
   useEffect(() => {
     if (!canvasRef.current) return;
 
-    const ctx = canvasRef.current.getContext("2d");
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     ctx.imageSmoothingEnabled = true;
@@ -88,21 +94,32 @@ const Canvas = ({ width, height }: CanvasProps) => {
     ctx.strokeStyle = "#000000";
     ctx.lineWidth = 20;
     contextRef.current = ctx;
+
+    canvas.addEventListener("touchstart", handleOnTouchStart, {
+      passive: false,
+    });
+    canvas.addEventListener("touchmove", handleOnTouchMove, { passive: false });
+    canvas.addEventListener("touchend", handleOnTouchEnd, { passive: false });
+
+    return () => {
+      // Clean up the event listeners
+      canvas.removeEventListener("touchstart", handleOnTouchStart);
+      canvas.removeEventListener("touchmove", handleOnTouchMove);
+      canvas.removeEventListener("touchend", handleOnTouchEnd);
+    };
   }, []);
 
   return (
     <canvas
-      aria-label="Drawing Canvas"
-      role="img"
       ref={canvasRef}
       width={width}
       height={height}
       onMouseDown={handleOnMouseDown}
-      onTouchStart={handleOnTouchStart}
+      // onTouchStart={handleOnTouchStart}
       onMouseUp={handleOnMouseUp}
-      onTouchEnd={handleOnTouchEnd}
+      // onTouchEnd={handleOnTouchEnd}
       onMouseMove={handleOnMouseMove}
-      onTouchMove={handleOnTouchMove}
+      // onTouchMove={handleOnTouchMove}
       onMouseLeave={handleOnMouseUp}
       onMouseEnter={handleOnMouseEnter}
       className="cursor-pen"

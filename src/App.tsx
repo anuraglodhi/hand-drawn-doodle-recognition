@@ -45,10 +45,11 @@ const App = () => {
     <>
       <div className="flex flex-col items-center dark:text-zinc-50 text-gray-800">
         <div className="app-container fixed top-0 left-0 flex flex-col scroll-m-0 h-[100%] w-[100%] dark:bg-zinc-800 bg-slate-50">
-          <div className="nav py-2 px-10 w-full flex fex-row justify-center h-fit shadow-lg rounded-b-lg">
-            <div className="app-title text-sm font-extrabold sm:text-3xl font-mono sm:font-bold">
+          <div className="nav py-2 mx-4 w-full flex fex-row justify-start sm:justify-center h-fit shadow-lg rounded-b-lg">
+            <span className="app-title inline-block text-sm font-extrabold sm:text-3xl font-mono sm:font-bold">
               Hand Drawn Doodle Recognition
-            </div>
+            </span>
+            <button></button>
           </div>
           <div className="app-body flex flex-col sm:flex-row">
             <div className="drawing-container flex flex-col w-full sm:w-[50%] justify-start items-center px-10">
@@ -94,11 +95,19 @@ const App = () => {
         </div>
 
         <Sheet>
-          <SheetTrigger className="fixed bottom-1 flex flex-col items-center font-bold sm:text-base text-xs sm:animate-[bounce_5s_ease-in-out_infinite] right-1 sm:right-auto">
-            <ArrowUpFromLine className="h-6 w-6 sm:block hidden" />
+          <SheetTrigger className="fixed bottom-1 hidden sm:flex sm:flex-col items-center font-bold sm:text-base text-xs sm:animate-[bounce_5s_ease-in-out_infinite] sm:right-auto">
+            <ArrowUpFromLine className="h-6 w-6" />
             All
             <br />
             categories
+          </SheetTrigger>
+          <SheetTrigger className="fixed flex sm:hidden top-[10px] right-4">
+            <img
+              src="/hamburger.svg"
+              width={16}
+              height={16}
+              className="dark:invert"
+            />
           </SheetTrigger>
           <SheetContent
             side={window.innerWidth >= 640 ? "bottom" : "right"}
